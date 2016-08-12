@@ -6,6 +6,7 @@ module MyLib.MyComplex
     Complex'(..)
   ) where
 
+
 import MyLib.Matrix
 import MyLib.General
 
@@ -55,5 +56,5 @@ instance MyComplex where
   
   --take conjuguate
   conjuguate (Complex'(a,b)) = Complex' (a,-b)
-
+  
   
