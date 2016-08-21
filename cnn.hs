@@ -35,13 +35,18 @@ class CNN where
   --return : Node on next layers
   feedForward1D :: (Double->Double) -> Node1D -> Weight1D -> Node1D
   
-  feedForward1D' :: (Double->Double) -> Node1D -> Weight1D -> [Node1D]
+  --feedForward in a different way, 
+  feedForward1D' :: Node1D -> Weight1D -> Node1D
+  
+  --sub function of 
+  feedForward1D''  :: Node1D -> Weight1D -> [Node1D]
+  
+  feedForward1D''' :: [Node1D] -> KernelSize -> Node1D
   
   --dimension is one higher than 1D
-  feedForward2D :: (Double->Double) -> Node2D -> Weight2D -> Node2D
+  feedForward2D :: Node2D -> Weight2D -> Node2D
   
   --feedForward2D' :: (Double->Double) -> Node2D -> Weight2D -> Node2D
-  
   
   --rectified linear unit
   relu :: Double -> Double
@@ -124,24 +129,31 @@ instance CNN where
   --then, rightest map2 puts pairs of input and weights on convolution calculation,
   --then, the matrix is transposed so it can be added by element-wise.
   feedForward1D f n = map $ map g . t' . map2 convolve1D n
-     where g = f . foldl (+) 0
+     where g = foldl (+) 0
+           
+  
+  feedForward1D' n w = feedForward1D''' (feedForward1D'' n w) k
+     where k = (length . head . head) w
            
                
-  feedForward1D' f n2 w4 = map (\w3 -> (map.map) (foldl (+) 0) $ map (t') $ map2 (\w2 n1 -> map (\w1 -> map (*w1) n1) w2) w3 n2) w4
-  
-  f2 n = slideNode1D 3 n
-  
-     --where g = f . foldl (+) 0
-         
-                         
+  feedForward1D'' n2 w4 = map (\w3 -> group k . map (foldl (+) 0) . t' . map (concat) $ map2 (\w2 n1 -> map (\w1 -> map (*w1) n1) w2) w3 n2) w4
+     where k = (length . head) n2
+           
+           
+           
+  feedForward1D''' n k = map (\x-> pickUp x kk kk) s
+    where kk = k `div` 2
+          s  = map (\x -> map (foldl (+) 0) . t' $ map2 (\(h,t) xx-> boundry1D t h xx) (zip [0..2*kk] (reverse [0..2*kk])) x ) n
+          
+               
                          
   --the way not to use signature "$" is following
   --feedForward1D f n = map (map (f . foldl (+) 0)) . t' . map2 (convolve2D) n
   
   --only difference between 1D and 2D is two.
   --One is convolving by 2D and another is covering over it with one more "map"
-  feedForward2D f n = map $ map g . t' . map2 convolve2D n
-     where g = map (f . foldl (+) 0)
+  feedForward2D n = map $ map g . t' . map2 convolve2D n
+     where g = map (foldl (+) 0)
            
   --the way not to use signature "$" is following
   --feedForward2D f n = map (map (map (f . foldl (+) 0)) . t' . map2 (convolve2D) n)
@@ -183,10 +195,10 @@ instance CNN where
   --that is why (*df xx)) is used.
   --Then, propagated error is multiplied by it
   backPropagateError1D df n = map2 (\x -> map2 (\xx -> (*(df xx)) . foldl (+) 0) x . t' . map2 (convolve1D) n)
-
+  
   --same with 1D except one more map2 and convolution by 2D
   backPropagateError2D df n = map2 (\x -> map2 (\xx -> map2 (\xxx -> (*(df xxx)) . foldl (+) 0) xx ) x . t' . map2 (convolve2D) n)
-
+  
   --update weight can be done 
   updateWeight1D lr = (map2.map2.map2) (\x y-> x*y*lr)
   updateWeight2D lr = (map2.map2.map2.map2) (\x y-> x*y*lr)
@@ -216,12 +228,12 @@ instance CNN where
   
   --first let size of list longer so as to reflect kernel size of the convolution.
   --then, pick up all of possible combinations of filters 
-  slideNode1D k = map (\x-> map2 (pickUp x) [0..2*k] (reverse [0..2*k])) . map (boundry1D k)
+  slideNode1D k = map (\x-> map2 (pickUp x) [0..2*k] (reverse [0..2*k])) . map (boundry1D k k)
   
                   
   --this function pick up part of list dropping first I element, and last j element.          
   pickUp a i j = (reverse . drop j . reverse . drop i) a
-
+  
   
   --size of twoD node is going to be larger in any directions, reflecting convolution kernel,
   --then, cut out all of combinations of the candidate list,
@@ -231,13 +243,14 @@ instance CNN where
   slideNode2D  k = map (\x -> slideNode2D' k (t' x)) . slideNode2D' k
   
   --2D version of slideNode1D
-  slideNode2D' k = map (\x-> map2 (pickUp x) [0..2*k] (reverse [0..2*k])) . map (boundry2D k)
+  slideNode2D' k = map (\x-> map2 (pickUp x) [0..2*k] (reverse [0..2*k])) . map (boundry2D k k)
   
     
 main = do
   
-  print $ feedForward1D relu [[1..10],[1..10]] [[[1..3],[1..3]],[[1..3],[1..3]]]
-  
+  print $ feedForward1D  relu [[3..8],[0..5]] [[[1..3],[1,5,2]],[[1..3],[3,1,2]]]
+  print $ feedForward1D' [[3..8],[0..5]] [[[1..3],[1,5,2]],[[1..3],[3,1,2]]]
+  print $ feedForward1D'' [[3..8],[0..5]] [[[1..3],[1,5,2]],[[1..3],[3,1,2]]]
   
   --print $ maxPooling2D [[[1..10],[2..11],[1..10],[1..10]],[[1..10],[1..10],[4..13],[1..10]]]
   
@@ -245,7 +258,6 @@ main = do
   let k = 2
   
   --print $ weightDerivative1D [[1,2,3],[2,3,4]] [[1,2,3],[2,3,4]] 3
-  
   
   --weightDerivative1D [[1,2,3],[2,3,4]] [[1,2,3],[2,3,4]] 3 --[[[1,2,3]]]
   --print $ updateWeight1D 
