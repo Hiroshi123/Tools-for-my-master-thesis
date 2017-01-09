@@ -1,0 +1,11 @@
+
+
+function myRelu(arg)
+   if arg > 0 then return arg
+   else return 0
+   end
+end
+
+function deSigmoid(arg)
+   return arg * ( 1 - arg )
+end

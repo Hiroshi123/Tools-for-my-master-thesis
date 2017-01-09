@@ -1,0 +1,14 @@
+[program started on Wed Nov 16 16:13:47 2016] 
+[command line arguments] 
+epoch 100 
+ds mnist 
+lr 0.1 
+dir /home/hiroshi/c++/ML/BNN/binaryLocal/torch/results 
+threads 1 
+plot 1 
+bs 1 
+model model3 
+ac 100 
+title Accuracy per epoch 
+[----------------------] 
+---main--- 

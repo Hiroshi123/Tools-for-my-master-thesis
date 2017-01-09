@@ -1,0 +1,18 @@
+[program started on Wed Nov 23 19:52:03 2016] 
+[command line arguments] 
+imageFileExtension svg 
+title Accuracy per epoch 
+bs 1 
+usingSampleN 100 
+epoch 2000 
+lr 0.001 
+ds cifar10 
+dir /home/hiroshi/c++/ML/BNN/binaryGlobal/torch/results 
+threads 1 
+plot 1 
+GPU -1 
+model model9 
+ac 100 
+chartFileName chart1 
+[----------------------] 
+---main--- 

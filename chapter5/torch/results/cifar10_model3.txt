@@ -1,0 +1,36 @@
+[program started on Thu Nov 17 17:52:00 2016] 
+[command line arguments] 
+epoch 10 
+title Accuracy per epoch 
+usingSampleN 100 
+lr 0.1 
+dir /home/hiroshi/c++/ML/BNN/binaryGlobal/torch/results 
+threads 1 
+plot 1 
+bs 1 
+ds cifar10 
+ac 100 
+model model3 
+[----------------------] 
+---main--- 
+train accuracy =  0.09 
+test accuracy =  0.08 
+train accuracy =  0.08 
+test accuracy =  0.06 
+train accuracy =  0.11 
+test accuracy =  0.16 
+train accuracy =  0.1 
+test accuracy =  0.09 
+train accuracy =  0.11 
+test accuracy =  0.09 
+train accuracy =  0.14 
+test accuracy =  0.11 
+train accuracy =  0.07 
+test accuracy =  0.16 
+train accuracy =  0.11 
+test accuracy =  0.08 
+train accuracy =  0.12 
+test accuracy =  0.08 
+train accuracy =  0.13 
+test accuracy =  0.05 
+end 

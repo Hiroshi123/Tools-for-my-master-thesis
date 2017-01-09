@@ -1,0 +1,116 @@
+[program started on Thu Nov 17 17:53:50 2016] 
+[command line arguments] 
+epoch 50 
+title Accuracy per epoch 
+usingSampleN 100 
+lr 0.001 
+dir /home/hiroshi/c++/ML/BNN/binaryGlobal/torch/results 
+threads 1 
+plot 1 
+bs 1 
+ds cifar10 
+ac 100 
+model model5 
+[----------------------] 
+---main--- 
+train accuracy =  0.11 
+test accuracy =  0.14 
+train accuracy =  0.15 
+test accuracy =  0.09 
+train accuracy =  0.2 
+test accuracy =  0.04 
+train accuracy =  0.18 
+test accuracy =  0.14 
+train accuracy =  0.24 
+test accuracy =  0.08 
+train accuracy =  0.3 
+test accuracy =  0.14 
+train accuracy =  0.24 
+test accuracy =  0.06 
+train accuracy =  0.23 
+test accuracy =  0.12 
+train accuracy =  0.29 
+test accuracy =  0.11 
+train accuracy =  0.22 
+test accuracy =  0.08 
+train accuracy =  0.3 
+test accuracy =  0.09 
+train accuracy =  0.19 
+test accuracy =  0.11 
+train accuracy =  0.1 
+test accuracy =  0.1 
+train accuracy =  0.22 
+test accuracy =  0.13 
+train accuracy =  0.24 
+test accuracy =  0.08 
+train accuracy =  0.23 
+test accuracy =  0.09 
+train accuracy =  0.36 
+test accuracy =  0.16 
+train accuracy =  0.45 
+test accuracy =  0.1 
+train accuracy =  0.34 
+test accuracy =  0.11 
+train accuracy =  0.4 
+test accuracy =  0.17 
+train accuracy =  0.41 
+test accuracy =  0.12 
+train accuracy =  0.45 
+test accuracy =  0.19 
+train accuracy =  0.45 
+test accuracy =  0.14 
+train accuracy =  0.5 
+test accuracy =  0.12 
+train accuracy =  0.5 
+test accuracy =  0.15 
+train accuracy =  0.52 
+test accuracy =  0.11 
+train accuracy =  0.41 
+test accuracy =  0.18 
+train accuracy =  0.46 
+test accuracy =  0.14 
+train accuracy =  0.38 
+test accuracy =  0.21 
+train accuracy =  0.35 
+test accuracy =  0.13 
+train accuracy =  0.29 
+test accuracy =  0.15 
+train accuracy =  0.27 
+test accuracy =  0.09 
+train accuracy =  0.31 
+test accuracy =  0.12 
+train accuracy =  0.41 
+test accuracy =  0.08 
+train accuracy =  0.29 
+test accuracy =  0.11 
+train accuracy =  0.36 
+test accuracy =  0.12 
+train accuracy =  0.3 
+test accuracy =  0.12 
+train accuracy =  0.34 
+test accuracy =  0.08 
+train accuracy =  0.37 
+test accuracy =  0.14 
+train accuracy =  0.38 
+test accuracy =  0.11 
+train accuracy =  0.35 
+test accuracy =  0.14 
+train accuracy =  0.38 
+test accuracy =  0.12 
+train accuracy =  0.47 
+test accuracy =  0.11 
+train accuracy =  0.42 
+test accuracy =  0.1 
+train accuracy =  0.27 
+test accuracy =  0.09 
+train accuracy =  0.36 
+test accuracy =  0.09 
+train accuracy =  0.45 
+test accuracy =  0.16 
+train accuracy =  0.36 
+test accuracy =  0.13 
+train accuracy =  0.22 
+test accuracy =  0.09 
+train accuracy =  0.33 
+test accuracy =  0.14 
+end 

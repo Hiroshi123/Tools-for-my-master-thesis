@@ -1,0 +1,23 @@
+[program started on Sun Nov 13 18:35:31 2016] 
+[command line arguments] 
+epoch 10 
+dir /home/hiroshi/lua/mnist/results 
+bs 1 
+ds mnist 
+ac 100 
+lr 0.1 
+[----------------------] 
+---main--- 
+1 setData 784 
+2 linear 500 
+3 activationSig 500 
+4 linear 10 
+5 activationSig 10 
+accuracy =  0.32 
+accuracy =  0.67 
+accuracy =  0.68 
+accuracy =  0.81 
+accuracy =  0.71 
+accuracy =  0.78 
+accuracy =  0.74 
+accuracy =  0.85 

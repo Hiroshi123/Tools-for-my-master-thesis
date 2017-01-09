@@ -1,0 +1,54 @@
+
+model   = {}
+
+function setModel()
+   
+   model = {
+      
+      operations = {
+	 "setData",
+	 "linear",
+	 "activationSig",
+	 "linear",
+	 "activationSig"
+      },
+      
+      --following is a bit to represent each activations of nodes and weights
+      
+      bitForward = {
+	 32,32
+      },
+      
+      bitBackward = {
+	 1,1
+      },
+      
+      bitWeight = {
+	 32,32
+      },
+      
+      bitUpdate = {
+	 
+      },
+      
+      len = 5,
+      nodeLen   = 3,
+      weightLen = 2,
+      
+      layerN = {
+	 28*28,500,500,10,10
+      },
+      
+      node    = {},
+      nodeB   = {},
+      nodeT   = {},
+      eNode   = {},
+      eNodeB  = {},
+      weight  = {},
+      weightB = {},
+      dWeight = {},
+      teacher = {}
+   }
+   
+   
+end
